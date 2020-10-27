@@ -1,9 +1,11 @@
-import React from 'react';
+import React from "react";
+import SignUp from "../landing/auth/Signup";
 
-const Landing = () => (
+const Landing = () => {
   <>
-    Landing Page
-  </>
-);
+    Hello
+    <SignUp />
+  </>;
+};
 
 export default Landing;
