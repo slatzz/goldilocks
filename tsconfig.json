@@ -22,10 +22,10 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react",
+    "jsx": "react"
   },
   "include": [
     "src",
-    "server",
+    "server"
   ]
 }

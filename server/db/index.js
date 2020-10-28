@@ -53,5 +53,9 @@ db.sync()
 //   .then(() => console.log('✅🎃✅ Connected to database'))
 //   .catch(() => console.log('❌☠️❌ Database connection failed'));
 
-module.exports.db = db;
-module.exports = models;
+// module.exports.db = db;
+// module.exports = models;
+
+module.exports = {
+  db, models, User
+}
