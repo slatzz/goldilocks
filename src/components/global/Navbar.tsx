@@ -42,7 +42,7 @@ const Navbar: React.FC = (): JSX.Element => {
           </Toolbar>
         </AppBar>
         <Switch>
-          <Route exact path="/" component={Landing} />
+          {/* <Route exact path="/register" component={Landing} /> */}
           <Route exact path="/search" component={Search} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/messages" component={Messages} />

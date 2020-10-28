@@ -2,10 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Landing from './components/landing/Landing';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Landing />
   </React.StrictMode>,
   document.getElementById('root'),
 );
