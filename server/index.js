@@ -1,32 +1,23 @@
 //////////////////////////// REQUIRED VARIABLES ////////////////////////////
-require('dotenv').config();
-const { db } = require('./db/index.js');
+require("dotenv").config();
 const PORT = process.env.PORT || 3000;
-const express = require('express');
-const path = require('path');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const passport = require('passport');
-const passportLocal = require('passport-local');
-const cookieParser = require('cookie-parser');
-const session = require('express-session');
-const bcrypt = require('bcryptjs');
-const { User } = require('./db/index.js');
-const { default: e } = require('express');
-
+const express = require("express");
+const path = require("path");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
 
 //////////////////////////// MIDDLEWARE ////////////////////////////
 const app = express();
 app.use(bodyParser.json()); // req.body
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
-app.use(express.static(path.join(__dirname, '../build')));
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(express.static(path.join(__dirname, "../build")));
 
 app.use(cookieParser());
 
-
-
 //////////////////////////// ROUTES ////////////////////////////
-app.use('/auth', require('./routes/jwtAuth'))
+app.use("/auth", require("./routes/jwtAuth"));
+app.use("/dashboard", require("./routes/dashboard"));
 // app.post("/users/register", async (req, res) => {
 //   let { name, email, password } = req.body;
 
@@ -74,22 +65,13 @@ app.use('/auth', require('./routes/jwtAuth'))
 //   }
 // })
 
-app.get('/users/register', (req, res) => {
-  res.send('success');
+app.get("/users/register", (req, res) => {
+  res.send("success");
 });
 
-app.get('/users/login', (req, res) => {
-  res.send('success');
+app.get("/users/login", (req, res) => {
+  res.send("success");
 });
-
-// app.get('/users/dashboard', (req, res) => {
-//   res.send(req.user);
-// });
-
-// app.get('/users/logout', (req, res) => {
-//   req.logout();
-//   res.send('You have successfully logged out.')
-// })
 
 //////////////////////////// CONFIRM DATABASE CONNECTION ////////////////////////////
 app.listen(PORT, () => {

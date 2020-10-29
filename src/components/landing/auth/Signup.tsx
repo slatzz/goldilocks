@@ -9,23 +9,10 @@ type RegisterNewUser = {
 };
 
 const SignUp = () => {
-  const { register, handleSubmit, errors } = useForm<RegisterNewUser>();
+  const { register, errors } = useForm<RegisterNewUser>();
 
   return (
     <form action="/register" method="POST">
-      <div className="field">
-        <label htmlFor="name">
-          Your Name
-          <input
-            ref={register({ required: true })}
-            type="text"
-            id="name"
-            name="name"
-            placeholder="Enter username"
-          />
-          {errors.name && <div className="error">Enter Your Name</div>}
-        </label>
-      </div>
       <div className="field">
         <label htmlFor="email">
           Email
@@ -50,6 +37,18 @@ const SignUp = () => {
             placeholder="Create Password"
           />
           {errors.password && <div className="error">Enter Your Password</div>}
+        </label>
+      </div>
+      <div className="field">
+        <label htmlFor="verification-code">
+          Enter Verification Code
+          <input
+            type="text"
+            id="verification"
+            name="verification-code"
+            placeholder="Enter verification code"
+          />
+          {errors.name && <div className="error">Enter a valid verfication code</div>}
         </label>
       </div>
       <button type="submit">Start Swapping</button>
