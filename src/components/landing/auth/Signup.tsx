@@ -12,7 +12,7 @@ const SignUp = () => {
   const { register, handleSubmit, errors } = useForm<UserLogin>();
 
   return (
-    <form action="/users/register" method="POST">
+    <form action="/register" method="POST">
       <div className="field">
         <label htmlFor="name">
           Your Name

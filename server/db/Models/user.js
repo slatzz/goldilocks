@@ -5,8 +5,8 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true,
     },
-    firstName: DataTypes.STRING,
-    lastName: DataTypes.STRING,
+    first_name: DataTypes.STRING,
+    last_name: DataTypes.STRING,
     pronouns: DataTypes.STRING,
     dob: DataTypes.DATEONLY,
     email: DataTypes.STRING,
@@ -16,7 +16,10 @@ module.exports = (sequelize, DataTypes) => {
     guestRating: DataTypes.FLOAT,
     hostRating: DataTypes.FLOAT,
     inviteCount: DataTypes.INTEGER,
-  });
+  },
+    { timestamps: false },
+
+  );
 
   return User;
 };
