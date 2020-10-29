@@ -2,14 +2,14 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 
 // Declare the type of data that will be handled in onSubmit function
-type UserLogin = {
+type RegisterNewUser = {
   name: string;
   email: string;
   password: string;
 };
 
 const SignUp = () => {
-  const { register, handleSubmit, errors } = useForm<UserLogin>();
+  const { register, handleSubmit, errors } = useForm<RegisterNewUser>();
 
   return (
     <form action="/register" method="POST">
@@ -53,7 +53,7 @@ const SignUp = () => {
         </label>
       </div>
       <button type="submit">Start Swapping</button>
-      <a href="/users/login">Already registered? Login here</a>
+      <a href="/login">Already registered? Login here</a>
     </form>
   );
 };
