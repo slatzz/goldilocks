@@ -23,6 +23,7 @@ const SignUp = () => {
 
   const onSubmitForm = async (event: SyntheticEvent) => {
     event.preventDefault();
+    console.log('hello2');
     try {
       const body = {
         firstName, lastName, email, password,
@@ -35,13 +36,18 @@ const SignUp = () => {
           },
           body: JSON.stringify(body),
         });
-      const parseRes = await response.json();
+      console.log('ln 39');
 
+      const parseRes = await response.json();
+      console.log('ln 41');
+      console.log(parseRes);
       if (parseRes.jwtToken) {
+        console.log(parseRes.jwtToken);
         localStorage.setItem('token', parseRes.jwtToken);
         setAuth(true);
         toast.success('Registered successfullly!');
       } else {
+        console.log('no token');
         setAuth(false);
         toast.error(parseRes);
       }
@@ -55,7 +61,7 @@ const SignUp = () => {
       <div className="container">
         <h1 className="text-center my-5">Register</h1>
         <div className="row justify-content-center">
-          <form onSubmit={onSubmitForm}>
+          <form>
             <div className="form-group align-center my-5">
               <label htmlFor="first-name">
                 First Name
