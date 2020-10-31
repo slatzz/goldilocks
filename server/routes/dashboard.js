@@ -2,7 +2,7 @@ const router = require("express").Router();
 const authorize = require("../utils/authorize");
 const { db, User } = require("../db/index");
 
-router.post("/", authorize, async (req, res) => {
+router.post("/dashboard", authorize, async (req, res) => {
   const { first_name, email } = req.body;
   console.log(req.user.id);
   console.log(first_name, email);

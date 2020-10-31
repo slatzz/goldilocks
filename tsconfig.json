@@ -2,11 +2,7 @@
   "compilerOptions": {
     "experimentalDecorators": true,
     "target": "es6",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -24,8 +20,6 @@
     "noEmit": true,
     "jsx": "react"
   },
-  "include": [
-    "src",
-    "server"
-  ]
+  "include": ["src", "server"],
+  "exclude": ["node_modules", "platforms"]
 }
