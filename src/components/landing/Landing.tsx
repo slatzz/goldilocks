@@ -1,5 +1,6 @@
 import React from 'react';
 import SignUp from './auth/Signup';
+import Login from './auth/Login';
 
 const Landing: React.FunctionComponent = (): JSX.Element => (
   <div className="Landing">

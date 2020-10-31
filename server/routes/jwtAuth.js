@@ -10,9 +10,9 @@ router.post("/register", async (req, res) => {
   try {
     //1. Destructure the req.body (name, email, password)
     // Change back to camel case
-    const { first_name, email, password } = req.body;
+    const { first_name, last_name, email, password } = req.body;
     //2. Check if user exists
-    console.log(first_name, email, password);
+    console.log("Entered variables", first_name, last_name, email, password);
     const existingUser = await User.findOne({
       where: {
         email: email,
@@ -25,8 +25,8 @@ router.post("/register", async (req, res) => {
 
       // Insert user into database
       // Change back to camel case
-      await db.query(`INSERT INTO users (first_name, email, password) 
-            VALUES ('${first_name}', '${email}', '${hashedPassword}');`);
+      await db.query(`INSERT INTO users (first_name, last_name, email, password) 
+            VALUES ('${first_name}', '${last_name}', '${email}', '${hashedPassword}');`);
       res.status(200).send("User successfully added!");
     } else {
       // 2.b. If user already exists, throw error

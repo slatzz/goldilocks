@@ -9,8 +9,8 @@ const cookieParser = require("cookie-parser");
 
 //////////////////////////// MIDDLEWARE ////////////////////////////
 const app = express();
-app.use(bodyParser.json()); // req.body
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(express.json()); // req.body
+app.use(cors());
 app.use(express.static(path.join(__dirname, "../build")));
 
 app.use(cookieParser());

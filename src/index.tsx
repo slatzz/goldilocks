@@ -8,7 +8,7 @@ import SignUp from './components/landing/auth/Signup';
 
 ReactDOM.render(
   <React.StrictMode>
-    <SignUp />
+    <Landing />
   </React.StrictMode>,
   document.getElementById('root'),
 );

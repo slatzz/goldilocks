@@ -1,33 +1,73 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, SyntheticEvent } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import axios, { AxiosResponse } from 'axios';
+import { Link, Redirect } from 'react-router-dom';
+import user from '../../../../server/db/Models/user';
 
 // Declare the type of data that will be handled in onSubmit function
 type RegisterNewUser = {
-  first_name: string;
-  last_name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
 };
 
 const SignUp = () => {
-  const { register, errors } = useForm<RegisterNewUser>();
+  const { errors } = useForm<RegisterNewUser>();
+  const [firstName, setFirstName] = useState<string>('');
+  const [lastName, setLastName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [isAuthenticated, setAuth] = useState<boolean>(false);
+
+  const onSubmitForm = async (event: SyntheticEvent) => {
+    event.preventDefault();
+    try {
+      const body = {
+        firstName, lastName, email, password,
+      };
+      const response = await fetch('http://localhost:3000/auth/register',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(body),
+        });
+      const parseRes = await response.json();
+
+      if (parseRes.jwtToken) {
+        localStorage.setItem('token', parseRes.jwtToken);
+        setAuth(true);
+        toast.success('Registered successfullly!');
+      } else {
+        setAuth(false);
+        toast.error(parseRes);
+      }
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
 
   return (
     <>
       <div className="container">
+        <h1 className="text-center my-5">Register</h1>
         <div className="row justify-content-center">
-          <form action="/auth/register" method="POST">
+          <form onSubmit={onSubmitForm}>
             <div className="form-group align-center my-5">
               <label htmlFor="first-name">
                 First Name
                 <input
                   className="form-control my-3"
                   type="text"
-                  id="first-name"
                   name="first-name"
                   placeholder="Enter your first name"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
                 />
-                {errors.first_name && <div className="error">Enter Your First Name</div>}
+                {errors.firstName && <div className="error">Enter Your First Name</div>}
               </label>
             </div>
             <div className="form-group align-center">
@@ -36,11 +76,12 @@ const SignUp = () => {
                 <input
                   className="form-control my-3"
                   type="text"
-                  id="last-name"
                   name="last-name"
                   placeholder="Enter your last name"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
                 />
-                {errors.last_name && <div className="error">Enter Your Last Name</div>}
+                {errors.lastName && <div className="error">Enter Your Last Name</div>}
               </label>
             </div>
             <div className="form-group align-center">
@@ -48,11 +89,11 @@ const SignUp = () => {
                 Email
                 <input
                   className="form-control my-3"
-                  ref={register({ required: true })}
                   type="text"
-                  id="email"
                   name="email"
                   placeholder="Email address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
                 {errors.email && <div className="error">Enter Your Email</div>}
               </label>
@@ -62,11 +103,11 @@ const SignUp = () => {
                 Password
                 <input
                   className="form-control my-3"
-                  ref={register({ required: true })}
-                  type="text"
-                  id="password"
+                  type="password"
                   name="password"
                   placeholder="Create Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 {errors.password && <div className="error">Enter Your Password</div>}
               </label>
@@ -87,11 +128,12 @@ const SignUp = () => {
               <button
                 className="btn btn-success btn-block"
                 type="submit"
+                onClick={onSubmitForm}
               >
                 Register
               </button>
               <br />
-              <a href="/login">Already registered? Login here</a>
+              <a href="/login">Already registered? Login here.</a>
             </div>
           </form>
         </div>

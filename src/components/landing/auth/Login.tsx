@@ -46,7 +46,7 @@ const Login = () => {
         >
           Start Swapping
         </button>
-        <a href="/login">Have a verification code? Sign Up Here</a>
+        <a href="/register">Have a verification code? Sign Up Here</a>
       </form>
     </>
   );
